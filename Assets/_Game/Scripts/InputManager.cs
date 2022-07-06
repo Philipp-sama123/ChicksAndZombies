@@ -24,7 +24,7 @@ public class InputManager : MonoBehaviour
     public bool sprintInput;
     public bool jumpInput;
 
-    public bool isFreeMovement = true;
+    public bool isAiming;
     public bool primaryAttackInput;
 
     public bool right_trigger_input;
@@ -33,6 +33,7 @@ public class InputManager : MonoBehaviour
     public bool right_button_hold_input; // todo think of sth better
     public bool left_button_hold_input; // todo think of sth better
     private RifleManager _rifleManager;
+    private CameraHandler _switchCanvas;
 
     // private CameraManager _cameraManager;
 
@@ -40,6 +41,7 @@ public class InputManager : MonoBehaviour
     {
         _playerManager = GetComponent<PlayerManager>();
         _rifleManager = GetComponentInChildren<RifleManager>();
+        _switchCanvas = FindObjectOfType<CameraHandler>(); // todo (!) better way
     }
 
     private void OnEnable()
@@ -79,7 +81,9 @@ public class InputManager : MonoBehaviour
             _playerInput.PlayerMovement.ToggleCrouching.performed += i => crouchInput = true;
             _playerInput.PlayerMovement.ToggleCrouching.canceled += i => crouchInput = false;
 
-            //  _playerInput.PlayerMovement.ChangeMovement.performed += _ => HandleAimingInput();
+            _playerInput.PlayerMovement.Aiming.performed += i => isAiming = true;
+            _playerInput.PlayerMovement.Aiming.canceled += i => isAiming = false;
+
         }
 
         _playerInput.Enable();
@@ -92,6 +96,7 @@ public class InputManager : MonoBehaviour
         HandleSprintingInput();
 
         HandleShootingInput();
+        HandleAimingInput();
     }
 
     private void OnDisable()
@@ -130,6 +135,13 @@ public class InputManager : MonoBehaviour
     private void HandleShootingInput()
     {
         if (primaryAttackInput)
+        {
+            Debug.Log("Shoot");
             _rifleManager.Shooting();
+        }
+    }
+    private void HandleAimingInput()
+    {
+        _switchCanvas.HandleAiming(isAiming);
     }
 }

@@ -46,7 +46,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ChangeMovement"",
+                    ""name"": ""Aiming"",
                     ""type"": ""Button"",
                     ""id"": ""649ab46d-0442-4f2c-8e0e-972389ed9fe2"",
                     ""expectedControlType"": ""Button"",
@@ -301,7 +301,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ChangeMovement"",
+                    ""action"": ""Aiming"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -312,7 +312,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ChangeMovement"",
+                    ""action"": ""Aiming"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -519,7 +519,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_PlayerMovement = asset.FindActionMap("Player Movement", throwIfNotFound: true);
         m_PlayerMovement_Camera = m_PlayerMovement.FindAction("Camera", throwIfNotFound: true);
         m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
-        m_PlayerMovement_ChangeMovement = m_PlayerMovement.FindAction("ChangeMovement", throwIfNotFound: true);
+        m_PlayerMovement_Aiming = m_PlayerMovement.FindAction("Aiming", throwIfNotFound: true);
         m_PlayerMovement_ToggleCrouching = m_PlayerMovement.FindAction("ToggleCrouching", throwIfNotFound: true);
         m_PlayerMovement_Dodge = m_PlayerMovement.FindAction("Dodge", throwIfNotFound: true);
         // Player Actions
@@ -591,7 +591,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private IPlayerMovementActions m_PlayerMovementActionsCallbackInterface;
     private readonly InputAction m_PlayerMovement_Camera;
     private readonly InputAction m_PlayerMovement_Movement;
-    private readonly InputAction m_PlayerMovement_ChangeMovement;
+    private readonly InputAction m_PlayerMovement_Aiming;
     private readonly InputAction m_PlayerMovement_ToggleCrouching;
     private readonly InputAction m_PlayerMovement_Dodge;
     public struct PlayerMovementActions
@@ -600,7 +600,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public PlayerMovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Camera => m_Wrapper.m_PlayerMovement_Camera;
         public InputAction @Movement => m_Wrapper.m_PlayerMovement_Movement;
-        public InputAction @ChangeMovement => m_Wrapper.m_PlayerMovement_ChangeMovement;
+        public InputAction @Aiming => m_Wrapper.m_PlayerMovement_Aiming;
         public InputAction @ToggleCrouching => m_Wrapper.m_PlayerMovement_ToggleCrouching;
         public InputAction @Dodge => m_Wrapper.m_PlayerMovement_Dodge;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
@@ -618,9 +618,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
-                @ChangeMovement.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnChangeMovement;
-                @ChangeMovement.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnChangeMovement;
-                @ChangeMovement.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnChangeMovement;
+                @Aiming.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAiming;
+                @Aiming.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAiming;
+                @Aiming.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAiming;
                 @ToggleCrouching.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnToggleCrouching;
                 @ToggleCrouching.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnToggleCrouching;
                 @ToggleCrouching.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnToggleCrouching;
@@ -637,9 +637,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @ChangeMovement.started += instance.OnChangeMovement;
-                @ChangeMovement.performed += instance.OnChangeMovement;
-                @ChangeMovement.canceled += instance.OnChangeMovement;
+                @Aiming.started += instance.OnAiming;
+                @Aiming.performed += instance.OnAiming;
+                @Aiming.canceled += instance.OnAiming;
                 @ToggleCrouching.started += instance.OnToggleCrouching;
                 @ToggleCrouching.performed += instance.OnToggleCrouching;
                 @ToggleCrouching.canceled += instance.OnToggleCrouching;
@@ -727,7 +727,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnCamera(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
-        void OnChangeMovement(InputAction.CallbackContext context);
+        void OnAiming(InputAction.CallbackContext context);
         void OnToggleCrouching(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
     }
