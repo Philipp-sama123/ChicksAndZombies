@@ -1,4 +1,5 @@
 using System;
+using _Game.Scripts;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -17,7 +18,6 @@ public class InputManager : MonoBehaviour
     public float horizontalInput;
     public float verticalInput;
 
-    public float moveAmount;
 
     public bool actionInput;
     public bool dodgeInput;
@@ -32,19 +32,23 @@ public class InputManager : MonoBehaviour
 
     public bool right_button_hold_input; // todo think of sth better
     public bool left_button_hold_input; // todo think of sth better
-    private RifleManager _rifleManager;
     private CameraHandler _switchCanvas;
 
     //Todo: this can cause you Performance Problems (future us Problem) 
     private PickupManager[] _pickupManager;
+
     // private CameraManager _cameraManager;
+    public float moveAmountAnimator = 0f;
+    private AnimatorManager _animatorManager;
+    private static readonly int MoveAmount = Animator.StringToHash("MoveAmount");
+    private static readonly int IsAiming = Animator.StringToHash("IsAiming");
 
     private void Awake()
     {
         _playerManager = GetComponent<PlayerManager>();
-        _rifleManager = GetComponentInChildren<RifleManager>();
         _switchCanvas = FindObjectOfType<CameraHandler>(); // todo (!) better way
         _pickupManager = FindObjectsOfType<PickupManager>();
+        _animatorManager = GetComponent<AnimatorManager>();
     }
 
     private void OnEnable()
@@ -92,11 +96,10 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        HandleMovementInput();
+        HandleMovementInput(sprintInput);
         HandleJumpingInput();
-        HandleSprintingInput();
 
-        HandleShootingInput();
+        HandleAttackInput();
         HandleAimingInput();
         HandleActionInput();
     }
@@ -124,10 +127,12 @@ public class InputManager : MonoBehaviour
     }
 
 
-    private void HandleMovementInput()
+    private void HandleMovementInput(bool isSprinting)
     {
         horizontalInput = movementInput.x;
         verticalInput = movementInput.y;
+        moveAmountAnimator = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
+        _animatorManager.UpdateAnimatorMovementValues(moveAmountAnimator, isSprinting);
 
         cameraInputX = cameraInput.x; // take input from joystick and then pass it to move the camera 
         cameraInputY = cameraInput.y;
@@ -142,39 +147,25 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void HandleSprintingInput()
-    {
-        if (sprintInput)
-            _playerManager.Sprinting();
-    }
-
-    private void HandleShootingInput()
+    private void HandleAttackInput()
     {
         if (primaryAttackInput)
         {
-            if (_rifleManager == null)
-            {
-                _playerManager.Punching();
-                _rifleManager = GetComponentInChildren<RifleManager>();
-            }
-
-            else
-            {
-                _rifleManager.Shooting();
-            }
-         
+            _playerManager.HandleAttackInput();
         }
-   
     }
 
     private void HandleAimingInput()
     {
-        _switchCanvas.HandleAiming(isAiming);
-    }
+        if (isAiming)
+        {
+            _animatorManager.animator.SetBool(IsAiming, true);
+        }
+        else
+        {
+            _animatorManager.animator.SetBool(IsAiming, false);
+        }
 
-    private void HandlePunching()
-    {
-        // Todo: go directly to CombatMnager
-        _playerManager.Punching();
+        _switchCanvas.HandleAiming(isAiming);
     }
 }

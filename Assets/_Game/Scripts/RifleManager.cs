@@ -7,13 +7,14 @@ public class RifleManager : MonoBehaviour
     [Header(("Rifle Things"))] public Camera mainCamera;
     public float damage = 10f;
     public float shootingRange = 100f;
-
+    public Animator rifleAnimator;
 
     public float fireCharge = 15f;
     public float nextTimeToShoot = 0f;
 
     [Header(("Rifle Effects"))] public ParticleSystem muzzleFlashEffect;
     public GameObject impactEffect;
+    public GameObject bloodEffect;
 
     [Header(("Rifle Ammunation and Shooting"))]
     public int maximumAmmunition = 32;
@@ -28,6 +29,7 @@ public class RifleManager : MonoBehaviour
 
     private void Awake()
     {
+        rifleAnimator = GetComponent<Animator>(); 
         transform.SetParent(hand); // TODO: rmv with Inverse Kinematics
         mainCamera = Camera.main;
         presentAmmunition = maximumAmmunition;
@@ -65,17 +67,21 @@ public class RifleManager : MonoBehaviour
         if (Time.time >= nextTimeToShoot)
         {
             nextTimeToShoot = Time.deltaTime + 1f / fireCharge;
-
-
+            
             RaycastHit hitInfo;
             muzzleFlashEffect.Play();
             var mainCameraTransform = mainCamera.transform;
             if (Physics.Raycast(mainCameraTransform.position, mainCameraTransform.forward, out hitInfo, shootingRange))
             {
-                Debug.LogWarning("Hit");
-                Debug.LogWarning(hitInfo.transform.name);
-
                 DamageManager damageManager = hitInfo.transform.GetComponent<DamageManager>();
+                ZombieManager zombieManager = hitInfo.transform.GetComponent<ZombieManager>();
+                if (zombieManager != null)
+                {
+                    zombieManager.OnZombieDamage(damage);
+                    GameObject impactGo = Instantiate(bloodEffect, hitInfo.point,
+                        Quaternion.LookRotation(hitInfo.normal));
+                    Destroy(impactGo, 1f);
+                }
                 if (damageManager != null)
                 {
                     damageManager.OnDamage(damage);
@@ -91,6 +97,7 @@ public class RifleManager : MonoBehaviour
     {
         player.playerSpeed = 0f;
         player.playerSprintSpeed = 0;
+        player.PlayReloadAnimation();
         isReloading = true;
         Debug.Log("Reloading .... ");
         // play anim 

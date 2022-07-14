@@ -27,7 +27,7 @@ public class PickupManager : MonoBehaviour
         {
             PlayerRifle.SetActive(true);
             PickupRifle.SetActive(false);
-
+            player.SetEquipWeapon(true); 
             // sound
 
             //complete

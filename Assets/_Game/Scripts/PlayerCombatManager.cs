@@ -10,7 +10,9 @@ public class PlayerCombatManager : MonoBehaviour
     [Header("Player Combat Variables")] public Camera mainCameraTransform;
     public float damage = 10f;
     public GameObject impactEffect;
-    public Animator animator; 
+    public GameObject bloodEffect;
+    public Animator animator;
+
     public void Awake()
     {
         mainCameraTransform = Camera.main;
@@ -24,12 +26,21 @@ public class PlayerCombatManager : MonoBehaviour
                 InitPlayerPunchingRadius))
         {
             Debug.LogWarning("Hit Punching");
-            Debug.LogWarning(hitInfo.transform.name);
             DamageManager damageManager = hitInfo.transform.GetComponent<DamageManager>();
+            ZombieManager zombieManager = hitInfo.transform.GetComponent<ZombieManager>();
+            Debug.LogWarning(zombieManager, damageManager);
             if (damageManager != null)
             {
                 damageManager.OnDamage(damage);
                 GameObject impactGo = Instantiate(impactEffect, hitInfo.point,
+                    Quaternion.LookRotation(hitInfo.normal));
+                Destroy(impactGo, 1f);
+            }
+
+            if (zombieManager != null)
+            {
+                zombieManager.OnZombieDamage(damage);
+                GameObject impactGo = Instantiate(bloodEffect, hitInfo.point,
                     Quaternion.LookRotation(hitInfo.normal));
                 Destroy(impactGo, 1f);
             }
