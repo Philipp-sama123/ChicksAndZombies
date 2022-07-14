@@ -19,7 +19,7 @@ public class InputManager : MonoBehaviour
 
     public float moveAmount;
 
-    public bool crouchInput;
+    public bool actionInput;
     public bool dodgeInput;
     public bool sprintInput;
     public bool jumpInput;
@@ -35,6 +35,8 @@ public class InputManager : MonoBehaviour
     private RifleManager _rifleManager;
     private CameraHandler _switchCanvas;
 
+    //Todo: this can cause you Performance Problems (future us Problem) 
+    private PickupManager[] _pickupManager;
     // private CameraManager _cameraManager;
 
     private void Awake()
@@ -42,6 +44,7 @@ public class InputManager : MonoBehaviour
         _playerManager = GetComponent<PlayerManager>();
         _rifleManager = GetComponentInChildren<RifleManager>();
         _switchCanvas = FindObjectOfType<CameraHandler>(); // todo (!) better way
+        _pickupManager = FindObjectsOfType<PickupManager>();
     }
 
     private void OnEnable()
@@ -58,9 +61,8 @@ public class InputManager : MonoBehaviour
             _playerInput.PlayerMovement.Dodge.performed += i => dodgeInput = true;
             _playerInput.PlayerMovement.Dodge.canceled += i => dodgeInput = false;
 
-            _playerInput.PlayerActions.Sprint.performed += i => sprintInput = true;
-            _playerInput.PlayerActions.Sprint.canceled += i => sprintInput = false;
-
+            _playerInput.PlayerMovement.Sprint.performed += i => sprintInput = true;
+            _playerInput.PlayerMovement.Sprint.canceled += i => sprintInput = false;
 
             _playerInput.PlayerActions.PrimaryAttack.performed +=
                 i => primaryAttackInput = true; // set true when pressed 
@@ -69,8 +71,8 @@ public class InputManager : MonoBehaviour
             _playerInput.PlayerActions.SecondaryAttack.performed += i => right_trigger_input = true;
             _playerInput.PlayerActions.SecondaryAttack.canceled += i => right_trigger_input = false;
 
-            _playerInput.PlayerActions.Jump.performed += i => jumpInput = true; // set true when pressed 
-            _playerInput.PlayerActions.Jump.canceled += i => jumpInput = false;
+            _playerInput.PlayerMovement.Jump.performed += i => jumpInput = true; // set true when pressed 
+            _playerInput.PlayerMovement.Jump.canceled += i => jumpInput = false;
 
             _playerInput.PlayerActions.RB_Hold.performed += i => right_button_hold_input = true;
             _playerInput.PlayerActions.RB_Hold.canceled += i => right_button_hold_input = false;
@@ -78,12 +80,11 @@ public class InputManager : MonoBehaviour
             _playerInput.PlayerActions.LB_Hold.performed += i => left_button_hold_input = true;
             _playerInput.PlayerActions.LB_Hold.canceled += i => left_button_hold_input = false;
 
-            _playerInput.PlayerMovement.ToggleCrouching.performed += i => crouchInput = true;
-            _playerInput.PlayerMovement.ToggleCrouching.canceled += i => crouchInput = false;
+            _playerInput.PlayerActions.Action.performed += i => actionInput = true;
+            _playerInput.PlayerActions.Action.canceled += i => actionInput = false;
 
-            _playerInput.PlayerMovement.Aiming.performed += i => isAiming = true;
-            _playerInput.PlayerMovement.Aiming.canceled += i => isAiming = false;
-
+            _playerInput.PlayerActions.Aiming.performed += i => isAiming = true;
+            _playerInput.PlayerActions.Aiming.canceled += i => isAiming = false;
         }
 
         _playerInput.Enable();
@@ -97,6 +98,21 @@ public class InputManager : MonoBehaviour
 
         HandleShootingInput();
         HandleAimingInput();
+        HandleActionInput();
+    }
+
+    private void HandleActionInput()
+    {
+        if (actionInput)
+        {
+            if (_pickupManager.Length > 0)
+            {
+                foreach (var pickupManager in _pickupManager)
+                {
+                    pickupManager.CheckForPlayerAndPickUpRifle();
+                }
+            }
+        }
     }
 
     private void OnDisable()
@@ -136,12 +152,29 @@ public class InputManager : MonoBehaviour
     {
         if (primaryAttackInput)
         {
-            Debug.Log("Shoot");
-            _rifleManager.Shooting();
+            if (_rifleManager == null)
+            {
+                _playerManager.Punching();
+                _rifleManager = GetComponentInChildren<RifleManager>();
+            }
+
+            else
+            {
+                _rifleManager.Shooting();
+            }
+         
         }
+   
     }
+
     private void HandleAimingInput()
     {
         _switchCanvas.HandleAiming(isAiming);
+    }
+
+    private void HandlePunching()
+    {
+        // Todo: go directly to CombatMnager
+        _playerManager.Punching();
     }
 }

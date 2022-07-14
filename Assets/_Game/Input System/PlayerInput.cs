@@ -46,27 +46,27 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Aiming"",
-                    ""type"": ""Button"",
-                    ""id"": ""649ab46d-0442-4f2c-8e0e-972389ed9fe2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ToggleCrouching"",
-                    ""type"": ""Button"",
-                    ""id"": ""66ce8fcb-4351-4e2f-9c62-ae87bb7ac5dc"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""5eabf911-8e3d-49b2-af0f-3bf269779228"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""218e9b22-6fa6-43b8-a79d-39a03044429b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c0ba27c-d82f-42b6-9374-d7d6edd33e38"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -252,28 +252,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0fbe9dae-da91-4df7-ac77-7e79d5cf3f99"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ToggleCrouching"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ce487ee5-7dbf-4009-944f-e7b33eae1598"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ToggleCrouching"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9a01512d-60d2-4d7b-a885-4c8ac0e93dd5"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
@@ -296,23 +274,45 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2b60a36c-7496-4bc9-871c-bbac7a269a8e"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""id"": ""814c7ebe-aea1-4592-8147-02d1d4a609f6"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aiming"",
+                    ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0b3ee37b-7d51-4728-9744-52dcc2cb32d0"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""id"": ""494f8fb2-cb26-47e0-af7e-97028f1176a2"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aiming"",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5beb2694-6f5e-4e90-8a62-76064b5fd5cb"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08b01847-05cd-45d7-b108-ba0eb143cb47"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -322,24 +322,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             ""name"": ""Player Actions"",
             ""id"": ""f549c2bb-61df-494d-aaf6-8d5f01717a1e"",
             ""actions"": [
-                {
-                    ""name"": ""Sprint"",
-                    ""type"": ""Button"",
-                    ""id"": ""f3496578-f0d7-482f-9c12-cb017518857b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""8e40eb22-729f-4ca9-97b7-61a3d33172d4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
                 {
                     ""name"": ""PrimaryAttack"",
                     ""type"": ""Button"",
@@ -375,53 +357,27 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Action"",
+                    ""type"": ""Button"",
+                    ""id"": ""89717ee4-4ce0-4435-94ff-0c74020bb323"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aiming"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb70ae77-0942-405a-83ea-befb00c6ef0b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""1305bc8f-cf46-446f-ac94-44ed30dfeb4b"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a376e829-fd63-401a-b4f5-204c924a9ec2"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""af081839-f5c3-4107-8ba0-690beb8578f7"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c89e27fe-659c-4e0a-9df5-54395372f62d"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""2a171bce-2d34-4cc1-a40b-43266d4c7f90"",
@@ -509,6 +465,50 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""LB_Hold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a1e63aa-a52d-4ab3-8ac4-8494a4c65c2e"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b023ec8-d932-4116-9431-159946b22f8a"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db51cc59-d9e8-4d20-b126-1fb17700342e"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aiming"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a38871b-5cd4-4582-9e7a-43d23655f220"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aiming"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -519,17 +519,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_PlayerMovement = asset.FindActionMap("Player Movement", throwIfNotFound: true);
         m_PlayerMovement_Camera = m_PlayerMovement.FindAction("Camera", throwIfNotFound: true);
         m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
-        m_PlayerMovement_Aiming = m_PlayerMovement.FindAction("Aiming", throwIfNotFound: true);
-        m_PlayerMovement_ToggleCrouching = m_PlayerMovement.FindAction("ToggleCrouching", throwIfNotFound: true);
         m_PlayerMovement_Dodge = m_PlayerMovement.FindAction("Dodge", throwIfNotFound: true);
+        m_PlayerMovement_Sprint = m_PlayerMovement.FindAction("Sprint", throwIfNotFound: true);
+        m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
         // Player Actions
         m_PlayerActions = asset.FindActionMap("Player Actions", throwIfNotFound: true);
-        m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
-        m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_PrimaryAttack = m_PlayerActions.FindAction("PrimaryAttack", throwIfNotFound: true);
         m_PlayerActions_SecondaryAttack = m_PlayerActions.FindAction("SecondaryAttack", throwIfNotFound: true);
         m_PlayerActions_RB_Hold = m_PlayerActions.FindAction("RB_Hold", throwIfNotFound: true);
         m_PlayerActions_LB_Hold = m_PlayerActions.FindAction("LB_Hold", throwIfNotFound: true);
+        m_PlayerActions_Action = m_PlayerActions.FindAction("Action", throwIfNotFound: true);
+        m_PlayerActions_Aiming = m_PlayerActions.FindAction("Aiming", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -591,18 +591,18 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private IPlayerMovementActions m_PlayerMovementActionsCallbackInterface;
     private readonly InputAction m_PlayerMovement_Camera;
     private readonly InputAction m_PlayerMovement_Movement;
-    private readonly InputAction m_PlayerMovement_Aiming;
-    private readonly InputAction m_PlayerMovement_ToggleCrouching;
     private readonly InputAction m_PlayerMovement_Dodge;
+    private readonly InputAction m_PlayerMovement_Sprint;
+    private readonly InputAction m_PlayerMovement_Jump;
     public struct PlayerMovementActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerMovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Camera => m_Wrapper.m_PlayerMovement_Camera;
         public InputAction @Movement => m_Wrapper.m_PlayerMovement_Movement;
-        public InputAction @Aiming => m_Wrapper.m_PlayerMovement_Aiming;
-        public InputAction @ToggleCrouching => m_Wrapper.m_PlayerMovement_ToggleCrouching;
         public InputAction @Dodge => m_Wrapper.m_PlayerMovement_Dodge;
+        public InputAction @Sprint => m_Wrapper.m_PlayerMovement_Sprint;
+        public InputAction @Jump => m_Wrapper.m_PlayerMovement_Jump;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -618,15 +618,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
-                @Aiming.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAiming;
-                @Aiming.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAiming;
-                @Aiming.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAiming;
-                @ToggleCrouching.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnToggleCrouching;
-                @ToggleCrouching.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnToggleCrouching;
-                @ToggleCrouching.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnToggleCrouching;
                 @Dodge.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnDodge;
                 @Dodge.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnDodge;
                 @Dodge.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnDodge;
+                @Sprint.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSprint;
+                @Jump.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -637,15 +637,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @Aiming.started += instance.OnAiming;
-                @Aiming.performed += instance.OnAiming;
-                @Aiming.canceled += instance.OnAiming;
-                @ToggleCrouching.started += instance.OnToggleCrouching;
-                @ToggleCrouching.performed += instance.OnToggleCrouching;
-                @ToggleCrouching.canceled += instance.OnToggleCrouching;
                 @Dodge.started += instance.OnDodge;
                 @Dodge.performed += instance.OnDodge;
                 @Dodge.canceled += instance.OnDodge;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -654,22 +654,22 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     // Player Actions
     private readonly InputActionMap m_PlayerActions;
     private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
-    private readonly InputAction m_PlayerActions_Sprint;
-    private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_PrimaryAttack;
     private readonly InputAction m_PlayerActions_SecondaryAttack;
     private readonly InputAction m_PlayerActions_RB_Hold;
     private readonly InputAction m_PlayerActions_LB_Hold;
+    private readonly InputAction m_PlayerActions_Action;
+    private readonly InputAction m_PlayerActions_Aiming;
     public struct PlayerActionsActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActionsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Sprint => m_Wrapper.m_PlayerActions_Sprint;
-        public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @PrimaryAttack => m_Wrapper.m_PlayerActions_PrimaryAttack;
         public InputAction @SecondaryAttack => m_Wrapper.m_PlayerActions_SecondaryAttack;
         public InputAction @RB_Hold => m_Wrapper.m_PlayerActions_RB_Hold;
         public InputAction @LB_Hold => m_Wrapper.m_PlayerActions_LB_Hold;
+        public InputAction @Action => m_Wrapper.m_PlayerActions_Action;
+        public InputAction @Aiming => m_Wrapper.m_PlayerActions_Aiming;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -679,12 +679,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsActionsCallbackInterface != null)
             {
-                @Sprint.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSprint;
-                @Sprint.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSprint;
-                @Sprint.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSprint;
-                @Jump.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
                 @PrimaryAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPrimaryAttack;
                 @PrimaryAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPrimaryAttack;
                 @PrimaryAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPrimaryAttack;
@@ -697,16 +691,16 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @LB_Hold.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLB_Hold;
                 @LB_Hold.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLB_Hold;
                 @LB_Hold.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLB_Hold;
+                @Action.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAction;
+                @Action.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAction;
+                @Action.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAction;
+                @Aiming.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAiming;
+                @Aiming.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAiming;
+                @Aiming.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAiming;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Sprint.started += instance.OnSprint;
-                @Sprint.performed += instance.OnSprint;
-                @Sprint.canceled += instance.OnSprint;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
                 @PrimaryAttack.started += instance.OnPrimaryAttack;
                 @PrimaryAttack.performed += instance.OnPrimaryAttack;
                 @PrimaryAttack.canceled += instance.OnPrimaryAttack;
@@ -719,6 +713,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @LB_Hold.started += instance.OnLB_Hold;
                 @LB_Hold.performed += instance.OnLB_Hold;
                 @LB_Hold.canceled += instance.OnLB_Hold;
+                @Action.started += instance.OnAction;
+                @Action.performed += instance.OnAction;
+                @Action.canceled += instance.OnAction;
+                @Aiming.started += instance.OnAiming;
+                @Aiming.performed += instance.OnAiming;
+                @Aiming.canceled += instance.OnAiming;
             }
         }
     }
@@ -727,17 +727,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnCamera(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
-        void OnAiming(InputAction.CallbackContext context);
-        void OnToggleCrouching(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
     public interface IPlayerActionsActions
     {
-        void OnSprint(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
         void OnPrimaryAttack(InputAction.CallbackContext context);
         void OnSecondaryAttack(InputAction.CallbackContext context);
         void OnRB_Hold(InputAction.CallbackContext context);
         void OnLB_Hold(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
+        void OnAiming(InputAction.CallbackContext context);
     }
 }

@@ -1,10 +1,15 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
 
 public class PlayerManager : MonoBehaviour
 {
-    [Header("Player Movement")] public float playerSpeed = 1.75f;
-    public float playerSprintSpeed = 3f;
+    private static readonly float InitPlayerSpeed = 1.75f;
+    private static readonly float InitPlayerSprintSpeed = 3f;
+    [Header("Player Movement")] public float playerSpeed = InitPlayerSpeed;
+    public float playerSprintSpeed = InitPlayerSprintSpeed;
 
     [Header("Player Script Camera")] public Transform playerCamera;
 
@@ -29,13 +34,18 @@ public class PlayerManager : MonoBehaviour
     // ToDo: Think of Required Fields
     private Animator _animator;
     private InputManager _inputManager;
+    private PlayerCombatManager _playerCombatManager;
 
+    [Header("Player Combat Stuff")] public float playerPunchRadius;
+    private float _nextTimeToPunch = 0f;
+    public float punchCharge = 15f;
 
     private static readonly int Idle = Animator.StringToHash("Idle");
     private static readonly int Walk = Animator.StringToHash("Walk");
     private static readonly int Running = Animator.StringToHash("Running");
     private static readonly int IdleAim = Animator.StringToHash("IdleAim");
     private static readonly int Jump = Animator.StringToHash("Jump");
+    private static readonly int Punch = Animator.StringToHash("Punch");
 
 
     private void Awake()
@@ -44,7 +54,10 @@ public class PlayerManager : MonoBehaviour
 
         _animator = GetComponent<Animator>();
         _inputManager = GetComponent<InputManager>();
+        _playerCombatManager = GetComponent<PlayerCombatManager>();
         characterController = GetComponent<CharacterController>();
+
+        playerPunchRadius = PlayerCombatManager.GetPlayerCombatRadius();
     }
 
     private void Update()
@@ -60,6 +73,12 @@ public class PlayerManager : MonoBehaviour
         characterController.Move(_velocity * Time.deltaTime);
 
         Moving();
+    }
+
+    public void ResetPlayerSpeeds()
+    {
+        playerSpeed = InitPlayerSpeed;
+        playerSprintSpeed = InitPlayerSprintSpeed;
     }
 
     private void Moving()
@@ -126,5 +145,26 @@ public class PlayerManager : MonoBehaviour
             _animator.SetBool(Walk, true);
             _animator.SetBool(Running, false);
         }
+    }
+
+    public void Punching()
+    {
+        // Todo: go directly to CombatMnager
+        if (Time.deltaTime >= _nextTimeToPunch)
+        {
+            _animator.SetBool(Punch, true);
+            _animator.SetBool(Idle, false);
+            _playerCombatManager.Punching();
+            StartCoroutine(
+                ResetPunchingAfterSeconds());
+        }
+    }
+
+
+    IEnumerator ResetPunchingAfterSeconds()
+    {
+        yield return new WaitForSeconds(2f);
+        _animator.SetBool(Punch, false);
+        _animator.SetBool(Idle, true);
     }
 }
